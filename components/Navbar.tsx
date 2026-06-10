@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, ChevronDown } from "lucide-react";
+import { motion } from "framer-motion";
 
 const practiceAreas = [
   { label: "Corporate Law", slug: "corporate-law" },
@@ -16,9 +17,21 @@ const practiceAreas = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [practiceOpen, setPracticeOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-[#02334E] shadow-md">
+    <motion.header
+      className={`sticky top-0 z-50 bg-[#02334E] transition-shadow duration-300 ${scrolled ? "shadow-xl" : "shadow-md"}`}
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -129,6 +142,6 @@ export default function Navbar() {
           </nav>
         </div>
       )}
-    </header>
+    </motion.header>
   );
 }

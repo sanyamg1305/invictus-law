@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import StickyConsultCTA from "@/components/StickyConsultCTA";
+import PageTransition from "@/components/PageTransition";
 
 export const metadata: Metadata = {
   title: "Invictus Law Practice | Expert Legal Counsel",
@@ -17,7 +18,7 @@ export default function RootLayout({
     <html lang="en" className="h-full">
       <body className="min-h-full flex flex-col antialiased">
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1"><PageTransition>{children}</PageTransition></main>
         <Footer />
         <StickyConsultCTA />
       </body>
