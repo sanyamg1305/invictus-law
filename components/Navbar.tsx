@@ -27,7 +27,7 @@ export default function Navbar() {
 
   return (
     <motion.header
-      className={`sticky top-0 z-50 bg-[#0F172A] transition-shadow duration-300 ${scrolled ? "shadow-2xl shadow-black/30" : "shadow-md shadow-black/20"}`}
+      className={`sticky top-0 z-50 bg-[#02334E] transition-shadow duration-300 ${scrolled ? "shadow-2xl shadow-black/30" : "shadow-md shadow-black/20"}`}
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -37,12 +37,12 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex flex-col leading-tight">
             <span
-              className="text-[#3B82F6] font-black tracking-widest text-xl"
-              style={{ fontFamily: "'Montserrat', sans-serif" }}
+              className="text-white font-black tracking-widest text-xl italic"
+              style={{ fontFamily: "'Playfair Display', serif" }}
             >
               INVICTUS
             </span>
-            <span className="text-white/50 text-[9px] tracking-[0.35em] font-medium uppercase">
+            <span className="text-[#FEDDDD]/60 text-[9px] tracking-[0.35em] font-medium uppercase">
               Law Practice
             </span>
           </Link>
@@ -68,7 +68,7 @@ export default function Navbar() {
                     <Link
                       key={area.slug}
                       href={`/practice-areas/${area.slug}`}
-                      className="block px-4 py-3 text-sm text-gray-700 hover:bg-[#3B82F6] hover:text-white border-b border-gray-50 last:border-0 transition-colors font-medium"
+                      className="block px-4 py-3 text-sm text-gray-700 hover:bg-[#02334E] hover:text-white border-b border-gray-50 last:border-0 transition-colors font-medium"
                     >
                       {area.label}
                     </Link>
@@ -94,7 +94,7 @@ export default function Navbar() {
           {/* CTA Button */}
           <Link
             href="/contact"
-            className="hidden lg:inline-flex items-center px-5 py-2.5 bg-[#3B82F6] text-white text-sm font-semibold rounded-lg hover:bg-[#2563EB] transition-colors"
+            className="hidden lg:inline-flex items-center px-5 py-2.5 bg-white text-[#02334E] text-sm font-semibold rounded-lg hover:bg-[#FEDDDD] transition-colors"
           >
             Free Consultation
           </Link>
@@ -112,11 +112,11 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="lg:hidden bg-[#0F172A] border-t border-white/10 pb-4">
+        <div className="lg:hidden bg-[#02334E] border-t border-white/10 pb-4">
           <nav className="flex flex-col px-4 pt-2 gap-1">
             <Link href="/" onClick={() => setOpen(false)} className="text-white/70 hover:text-white py-2 text-sm font-medium">Home</Link>
             <div className="py-2">
-              <p className="text-[#3B82F6] text-xs font-semibold uppercase tracking-widest mb-1">Practice Areas</p>
+              <p className="text-[#FEDDDD] text-xs font-semibold uppercase tracking-widest mb-1">Practice Areas</p>
               {practiceAreas.map((area) => (
                 <Link
                   key={area.slug}
@@ -135,7 +135,7 @@ export default function Navbar() {
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className="mt-2 inline-block text-center px-5 py-2.5 bg-[#3B82F6] text-white text-sm font-semibold rounded-lg"
+              className="mt-2 inline-block text-center px-5 py-2.5 bg-white text-[#02334E] text-sm font-semibold rounded-lg hover:bg-[#FEDDDD] transition-colors"
             >
               Free Consultation
             </Link>

@@ -1,44 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700&display=swap');
 @import "tailwindcss";
 
 :root {
-  --dark: #0F172A;
-  --blue: #3B82F6;
+  --navy: #02334E;
+  --navy-deep: #011E30;
+  --navy-light: #EBF2F7;
+  --blush: #FEDDDD;
   --white: #FFFFFF;
-  --dark-light: #1E293B;
-  --blue-light: #60A5FA;
-  --blue-dark: #2563EB;
+  --gray-light: #F8FAFC;
 }
 
 @theme inline {
-  --color-dark: var(--dark);
-  --color-blue: var(--blue);
-  --color-dark-light: var(--dark-light);
-  --color-blue-light: var(--blue-light);
-  --color-blue-dark: var(--blue-dark);
+  --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-navy-light: var(--navy-light);
+  --color-blush: var(--blush);
   --font-sans: 'Montserrat', sans-serif;
+  --font-serif: 'Playfair Display', serif;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'Montserrat', sans-serif;
-  color: #1a1a1a;
-  background: #fff;
-}
-
-.section-padding {
-  padding: 5rem 1.5rem;
-}
-
-@media (min-width: 768px) {
-  .section-padding {
-    padding: 6rem 3rem;
-  }
-}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Montserrat', sans-serif; color: #0A1628; background: #fff; }
+.section-padding { padding: 5rem 1.5rem; }
+@media (min-width: 768px) { .section-padding { padding: 6rem 3rem; } }

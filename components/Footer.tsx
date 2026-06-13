@@ -12,14 +12,14 @@ const practiceAreas = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0F172A] text-white">
+    <footer className="bg-[#011E30] text-white">
       <div className="max-w-7xl mx-auto px-6 pt-16 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div>
             <div className="mb-4">
-              <span className="block text-[#3B82F6] font-black tracking-widest text-xl">INVICTUS</span>
-              <span className="text-white/40 text-[9px] tracking-[0.35em] uppercase">Law Practice</span>
+              <span className="block text-white font-black tracking-widest text-xl italic" style={{ fontFamily: "'Playfair Display', serif" }}>INVICTUS</span>
+              <span className="text-[#FEDDDD]/60 text-[9px] tracking-[0.35em] uppercase">Law Practice</span>
             </div>
             <p className="text-white/50 text-sm leading-relaxed">
               Delivering expert legal counsel with integrity, strategy, and a relentless commitment to our clients&apos; success.
@@ -28,7 +28,7 @@ export default function Footer() {
 
           {/* Practice Areas */}
           <div>
-            <h4 className="text-[#3B82F6] text-xs font-semibold uppercase tracking-widest mb-4">Practice Areas</h4>
+            <h4 className="text-[#FEDDDD] text-xs font-semibold uppercase tracking-widest mb-4">Practice Areas</h4>
             <ul className="space-y-2">
               {practiceAreas.map((area) => (
                 <li key={area.slug}>
@@ -42,7 +42,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-[#3B82F6] text-xs font-semibold uppercase tracking-widest mb-4">Quick Links</h4>
+            <h4 className="text-[#FEDDDD] text-xs font-semibold uppercase tracking-widest mb-4">Quick Links</h4>
             <ul className="space-y-2">
               {[
                 { label: "About Us", href: "/about" },
@@ -64,24 +64,24 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-[#3B82F6] text-xs font-semibold uppercase tracking-widest mb-4">Contact Us</h4>
+            <h4 className="text-[#FEDDDD] text-xs font-semibold uppercase tracking-widest mb-4">Contact Us</h4>
             <ul className="space-y-3">
               <li className="flex gap-2 text-sm text-white/50">
-                <MapPin size={16} className="mt-0.5 shrink-0 text-[#3B82F6]" />
+                <MapPin size={16} className="mt-0.5 shrink-0 text-[#FEDDDD]" />
                 <span>123 Legal Avenue, Mumbai, Maharashtra 400001</span>
               </li>
               <li className="flex gap-2 text-sm text-white/50">
-                <Phone size={16} className="shrink-0 text-[#3B82F6]" />
+                <Phone size={16} className="shrink-0 text-[#FEDDDD]" />
                 <a href="tel:+911234567890" className="hover:text-white transition-colors">+91 12345 67890</a>
               </li>
               <li className="flex gap-2 text-sm text-white/50">
-                <Mail size={16} className="shrink-0 text-[#3B82F6]" />
+                <Mail size={16} className="shrink-0 text-[#FEDDDD]" />
                 <a href="mailto:info@invictuslaw.in" className="hover:text-white transition-colors">info@invictuslaw.in</a>
               </li>
             </ul>
             <Link
               href="/contact"
-              className="mt-6 inline-block px-5 py-2.5 bg-[#3B82F6] text-white text-sm font-semibold rounded-lg hover:bg-[#2563EB] transition-colors"
+              className="mt-6 inline-block px-5 py-2.5 bg-[#02334E] text-white text-sm font-semibold rounded-lg hover:bg-[#FEDDDD] hover:text-[#02334E] transition-colors"
             >
               Book a Consultation
             </Link>
