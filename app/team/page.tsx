@@ -17,16 +17,16 @@ const team = [
 export default function TeamPage() {
   return (
     <>
-      <section className="bg-[#02334E] text-white py-24 px-6">
+      <section className="bg-[#0F172A] text-white py-24 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <FadeUp delay={0.1}>
-            <p className="text-[#C8A065] text-xs font-semibold uppercase tracking-widest mb-3">The People Behind the Practice</p>
+            <p className="text-[#3B82F6] text-xs font-semibold uppercase tracking-widest mb-3">The People Behind the Practice</p>
           </FadeUp>
           <FadeUp delay={0.2}>
             <h1 className="text-4xl md:text-5xl font-black mb-6">Our Legal Team</h1>
           </FadeUp>
           <FadeUp delay={0.35}>
-            <p className="text-white/70 text-lg leading-relaxed max-w-2xl mx-auto">A team of dedicated legal professionals, each bringing deep specialization and a shared commitment to achieving the best outcomes for our clients.</p>
+            <p className="text-white/60 text-lg leading-relaxed max-w-2xl mx-auto">A team of dedicated legal professionals, each bringing deep specialization and a shared commitment to achieving the best outcomes for our clients.</p>
           </FadeUp>
         </div>
       </section>
@@ -38,18 +38,18 @@ export default function TeamPage() {
               <StaggerItem key={member.initials}>
                 <motion.div
                   className="bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm h-full"
-                  whileHover={{ y: -8, boxShadow: "0 24px 48px rgba(2,51,78,0.12)" }}
+                  whileHover={{ y: -8, boxShadow: "0 24px 48px rgba(59,130,246,0.12)" }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="bg-[#02334E] h-40 flex items-center justify-center relative overflow-hidden">
+                  <div className="bg-[#0F172A] h-40 flex items-center justify-center relative overflow-hidden">
                     <motion.div
-                      className="absolute inset-0 bg-[#C8A065]/10"
+                      className="absolute inset-0 bg-[#3B82F6]/10"
                       initial={{ x: "-100%" }}
                       whileHover={{ x: "100%" }}
                       transition={{ duration: 0.6 }}
                     />
                     <motion.div
-                      className="w-20 h-20 rounded-full bg-[#C8A065] flex items-center justify-center"
+                      className="w-20 h-20 rounded-full bg-[#3B82F6] flex items-center justify-center shadow-lg shadow-blue-500/30"
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       transition={{ duration: 0.25 }}
                     >
@@ -57,22 +57,22 @@ export default function TeamPage() {
                     </motion.div>
                   </div>
                   <div className="p-6">
-                    <h3 className="font-black text-[#02334E] text-lg">{member.name}</h3>
-                    <p className="text-[#C8A065] text-sm font-semibold mb-3">{member.role}</p>
-                    <p className="text-gray-500 text-sm leading-relaxed mb-4">{member.bio}</p>
+                    <h3 className="font-black text-[#0F172A] text-lg">{member.name}</h3>
+                    <p className="text-[#3B82F6] text-sm font-semibold mb-3">{member.role}</p>
+                    <p className="text-gray-400 text-sm leading-relaxed mb-4">{member.bio}</p>
                     <div className="flex flex-wrap gap-2 mb-4">
                       {member.expertise.map((e) => (
                         <motion.span
                           key={e}
-                          className="px-2.5 py-1 bg-[#02334E]/5 text-[#02334E] text-xs font-medium rounded-full"
-                          whileHover={{ backgroundColor: "#02334E", color: "#fff" }}
+                          className="px-2.5 py-1 bg-[#0F172A]/5 text-[#0F172A] text-xs font-medium rounded-full"
+                          whileHover={{ backgroundColor: "#0F172A", color: "#fff" }}
                           transition={{ duration: 0.15 }}
                         >
                           {e}
                         </motion.span>
                       ))}
                     </div>
-                    <Link href="/contact" className="inline-flex items-center gap-1.5 text-[#C8A065] text-sm font-semibold group">
+                    <Link href="/contact" className="inline-flex items-center gap-1.5 text-[#3B82F6] text-sm font-semibold group hover:text-[#2563EB] transition-colors">
                       <Mail size={14} />
                       <span className="group-hover:underline">Consult Now</span>
                     </Link>
@@ -84,14 +84,14 @@ export default function TeamPage() {
         </div>
       </section>
 
-      <section className="section-padding bg-gray-50">
+      <section className="section-padding bg-[#F8FAFC]">
         <div className="max-w-2xl mx-auto text-center">
           <ScaleIn>
-            <h2 className="text-3xl font-black text-[#02334E] mb-2">Speak to Our Experts</h2>
+            <h2 className="text-3xl font-black text-[#0F172A] mb-2">Speak to Our Experts</h2>
             <DrawLine className="w-16 mx-auto my-4" />
-            <p className="text-gray-500 mb-8">Get connected with the right legal professional for your specific matter.</p>
+            <p className="text-gray-400 mb-8">Get connected with the right legal professional for your specific matter.</p>
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-              <Link href="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#C8A065] text-white font-semibold rounded hover:bg-[#a8844a] transition-colors">
+              <Link href="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#3B82F6] text-white font-semibold rounded-lg hover:bg-[#2563EB] transition-colors">
                 Book a Consultation <ArrowRight size={16} />
               </Link>
             </motion.div>
