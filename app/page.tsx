@@ -56,84 +56,90 @@ export default function HomePage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <section className="relative bg-[#02334E] text-white overflow-hidden min-h-[90vh] flex items-center">
-        {/* Animated grid background */}
+      <section className="relative bg-[#0F172A] text-white overflow-hidden min-h-[90vh] flex items-center">
+        {/* Subtle grid */}
         <motion.div
-          className="absolute inset-0 opacity-10"
+          className="absolute inset-0 opacity-[0.04]"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.1 }}
+          animate={{ opacity: 0.04 }}
           transition={{ duration: 1.5 }}
           style={{
             backgroundImage:
-              "repeating-linear-gradient(90deg,#C8A065 0px,#C8A065 1px,transparent 1px,transparent 80px),repeating-linear-gradient(0deg,#C8A065 0px,#C8A065 1px,transparent 1px,transparent 80px)",
+              "repeating-linear-gradient(90deg,#fff 0px,#fff 1px,transparent 1px,transparent 80px),repeating-linear-gradient(0deg,#fff 0px,#fff 1px,transparent 1px,transparent 80px)",
           }}
         />
 
-        {/* Floating accent circles */}
+        {/* Blue radial glow top-right */}
         <motion.div
-          className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-[#C8A065]/10 blur-3xl"
-          animate={{ scale: [1, 1.1, 1], opacity: [0.1, 0.2, 0.1] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(59,130,246,0.18) 0%, transparent 70%)" }}
+          animate={{ scale: [1, 1.08, 1], opacity: [0.8, 1, 0.8] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
         />
+        {/* Blue radial glow bottom-left */}
         <motion.div
-          className="absolute bottom-0 -left-20 w-80 h-80 rounded-full bg-[#C8A065]/5 blur-3xl"
-          animate={{ scale: [1, 1.15, 1], opacity: [0.05, 0.15, 0.05] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute -bottom-20 -left-20 w-96 h-96 rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%)" }}
+          animate={{ scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         />
 
-        <div className="relative max-w-7xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-12 items-center w-full">
+        <div className="relative max-w-7xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-16 items-center w-full">
           <div>
             <HeroText delay={0.1}>
-              <p className="text-[#C8A065] text-sm font-semibold uppercase tracking-widest mb-4">
-                Invictus Law Practice
-              </p>
+              <div className="inline-flex items-center gap-2 bg-[#3B82F6]/10 border border-[#3B82F6]/20 rounded-full px-4 py-1.5 mb-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6] animate-pulse" />
+                <p className="text-[#60A5FA] text-xs font-semibold uppercase tracking-widest">
+                  Invictus Law Practice
+                </p>
+              </div>
             </HeroText>
             <HeroText delay={0.25}>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-6">
                 Relentless Advocacy.{" "}
-                <span className="text-[#C8A065]">Uncompromising</span> Results.
+                <span className="text-[#3B82F6]">Uncompromising</span> Results.
               </h1>
             </HeroText>
             <HeroText delay={0.4}>
-              <p className="text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
+              <p className="text-white/60 text-lg leading-relaxed mb-8 max-w-lg">
                 We combine sharp legal expertise with a client-first approach to deliver outcomes that matter. From corporate transactions to courtroom battles — Invictus stands unconquered.
               </p>
             </HeroText>
             <HeroText delay={0.55}>
               <div className="flex flex-wrap gap-4">
                 <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                  <Link href="/contact" className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#C8A065] text-white font-semibold rounded hover:bg-[#a8844a] transition-colors text-sm">
+                  <Link href="/contact" className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#3B82F6] text-white font-semibold rounded-lg hover:bg-[#2563EB] transition-colors text-sm shadow-lg shadow-blue-500/25">
                     Get a Free Consultation <ArrowRight size={16} />
                   </Link>
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                  <Link href="/practice-areas" className="inline-flex items-center gap-2 px-6 py-3.5 border border-white/30 text-white font-semibold rounded hover:bg-white/10 transition-colors text-sm">
+                  <Link href="/practice-areas" className="inline-flex items-center gap-2 px-6 py-3.5 border border-white/20 text-white font-semibold rounded-lg hover:bg-white/5 transition-colors text-sm">
                     Explore Practice Areas
                   </Link>
                 </motion.div>
               </div>
             </HeroText>
             <HeroText delay={0.7}>
-              <p className="mt-6 text-white/40 text-sm flex items-center gap-1.5">
-                <Clock size={14} /> Limited free consultation slots available this week
+              <p className="mt-8 text-white/30 text-sm flex items-center gap-1.5">
+                <Clock size={14} className="text-[#3B82F6]" /> Limited free consultation slots available this week
               </p>
             </HeroText>
           </div>
 
           {/* Lead Capture Form */}
           <motion.div
-            className="bg-white rounded-2xl p-8 shadow-2xl"
+            className="bg-white rounded-2xl p-8 shadow-2xl shadow-black/20"
             initial={{ opacity: 0, x: 60, scale: 0.95 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{ duration: 0.9, ease, delay: 0.3 }}
           >
-            <h2 className="text-[#02334E] font-bold text-xl mb-1">Talk to a Lawyer Now</h2>
-            <p className="text-gray-500 text-sm mb-6">Free, confidential 30-minute consultation.</p>
+            <h2 className="text-[#0F172A] font-black text-xl mb-1">Talk to a Lawyer Now</h2>
+            <p className="text-gray-400 text-sm mb-6">Free, confidential 30-minute consultation.</p>
             <form className="flex flex-col gap-4">
-              <input type="text" placeholder="Your Full Name" className="border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8A065] focus:border-transparent transition-shadow" />
-              <input type="email" placeholder="Email Address" className="border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8A065] focus:border-transparent transition-shadow" />
-              <input type="tel" placeholder="Phone Number" className="border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#C8A065] focus:border-transparent transition-shadow" />
-              <select className="border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#C8A065]">
+              <input type="text" placeholder="Your Full Name" className="border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-shadow" />
+              <input type="email" placeholder="Email Address" className="border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-shadow" />
+              <input type="tel" placeholder="Phone Number" className="border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-shadow" />
+              <select className="border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#3B82F6]">
                 <option value="">Select Legal Issue</option>
                 <option>Corporate Law</option>
                 <option>Litigation &amp; Dispute Resolution</option>
@@ -143,8 +149,8 @@ export default function HomePage() {
                 <option>Taxation &amp; Compliance</option>
                 <option>Other</option>
               </select>
-              <textarea placeholder="Brief description of your matter (optional)" rows={3} className="border border-gray-200 rounded-lg px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#C8A065] focus:border-transparent transition-shadow" />
-              <motion.button type="submit" className="w-full bg-[#02334E] text-white font-semibold py-3.5 rounded-lg text-sm" whileHover={{ backgroundColor: "#034568", scale: 1.01 }} whileTap={{ scale: 0.98 }} transition={{ duration: 0.15 }}>
+              <textarea placeholder="Brief description of your matter (optional)" rows={3} className="border border-gray-200 rounded-lg px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent transition-shadow" />
+              <motion.button type="submit" className="w-full bg-[#0F172A] text-white font-semibold py-3.5 rounded-lg text-sm" whileHover={{ backgroundColor: "#1E293B", scale: 1.01 }} whileTap={{ scale: 0.98 }} transition={{ duration: 0.15 }}>
                 Request Free Consultation
               </motion.button>
             </form>
@@ -153,16 +159,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Stats Ticker Bar ─────────────────────────────────────── */}
-      <section className="bg-[#C8A065]">
+      {/* ── Stats Bar ─────────────────────────────────────────────── */}
+      <section className="bg-[#1E293B] border-y border-white/5">
         <StaggerChildren className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-2 lg:grid-cols-4 gap-6" stagger={0.15}>
           {trustStats.map((stat) => (
             <StaggerItem key={stat.label}>
               <div className="text-center">
-                <p className="text-3xl font-black text-white">
+                <p className="text-3xl font-black text-[#3B82F6]">
                   <CountUp target={stat.value} suffix={stat.suffix} duration={2} />
                 </p>
-                <p className="text-white/80 text-sm font-medium mt-1">{stat.label}</p>
+                <p className="text-white/50 text-sm font-medium mt-1">{stat.label}</p>
               </div>
             </StaggerItem>
           ))}
@@ -174,8 +180,8 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
             <FadeUp>
-              <p className="text-[#C8A065] text-xs font-semibold uppercase tracking-widest mb-2">Why Invictus</p>
-              <h2 className="text-3xl md:text-4xl font-black text-[#02334E]">The Invictus Difference</h2>
+              <p className="text-[#3B82F6] text-xs font-semibold uppercase tracking-widest mb-2">Why Invictus</p>
+              <h2 className="text-3xl md:text-4xl font-black text-[#0F172A]">The Invictus Difference</h2>
               <DrawLine className="w-16 mx-auto mt-4" />
             </FadeUp>
           </div>
@@ -189,11 +195,11 @@ export default function HomePage() {
               { title: "Confidential & Trusted", desc: "Your matter is treated with the utmost discretion and professional integrity." },
             ].map((item) => (
               <StaggerItem key={item.title}>
-                <motion.div className="flex gap-4" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                  <CheckCircle2 className="shrink-0 mt-1 text-[#C8A065]" size={20} />
+                <motion.div className="flex gap-4 p-5 rounded-xl hover:bg-[#F8FAFC] transition-colors" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
+                  <CheckCircle2 className="shrink-0 mt-1 text-[#3B82F6]" size={20} />
                   <div>
-                    <h3 className="font-bold text-[#02334E] text-base mb-1">{item.title}</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+                    <h3 className="font-bold text-[#0F172A] text-base mb-1">{item.title}</h3>
+                    <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
                   </div>
                 </motion.div>
               </StaggerItem>
@@ -203,13 +209,13 @@ export default function HomePage() {
       </section>
 
       {/* ── Practice Areas ────────────────────────────────────────── */}
-      <section className="section-padding bg-gray-50">
+      <section className="section-padding bg-[#F8FAFC]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
             <FadeUp>
-              <p className="text-[#C8A065] text-xs font-semibold uppercase tracking-widest mb-2">What We Do</p>
-              <h2 className="text-3xl md:text-4xl font-black text-[#02334E]">Areas of Practice</h2>
-              <p className="text-gray-500 mt-3 text-sm max-w-xl mx-auto">Comprehensive legal services across every domain that matters to your business and personal life.</p>
+              <p className="text-[#3B82F6] text-xs font-semibold uppercase tracking-widest mb-2">What We Do</p>
+              <h2 className="text-3xl md:text-4xl font-black text-[#0F172A]">Areas of Practice</h2>
+              <p className="text-gray-400 mt-3 text-sm max-w-xl mx-auto">Comprehensive legal services across every domain that matters to your business and personal life.</p>
               <DrawLine className="w-16 mx-auto mt-4" />
             </FadeUp>
           </div>
@@ -217,20 +223,20 @@ export default function HomePage() {
             {practiceAreas.map((area) => (
               <StaggerItem key={area.slug}>
                 <motion.div
-                  whileHover={{ y: -6, boxShadow: "0 20px 40px rgba(2,51,78,0.12)" }}
+                  whileHover={{ y: -6, boxShadow: "0 20px 40px rgba(59,130,246,0.12)" }}
                   transition={{ duration: 0.25 }}
                 >
-                  <Link href={`/practice-areas/${area.slug}`} className="group bg-white rounded-xl p-7 shadow-sm border border-gray-100 hover:border-[#C8A065] transition-colors block h-full">
+                  <Link href={`/practice-areas/${area.slug}`} className="group bg-white rounded-xl p-7 shadow-sm border border-gray-100 hover:border-[#3B82F6]/30 transition-colors block h-full">
                     <motion.div
-                      className="w-12 h-12 rounded-lg bg-[#02334E]/5 flex items-center justify-center mb-4"
-                      whileHover={{ backgroundColor: "#02334E", rotate: 5 }}
+                      className="w-12 h-12 rounded-lg bg-[#3B82F6]/8 flex items-center justify-center mb-4"
+                      whileHover={{ backgroundColor: "#3B82F6", rotate: 5 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <area.icon className="text-[#02334E] group-hover:text-white transition-colors" size={22} />
+                      <area.icon className="text-[#3B82F6] group-hover:text-white transition-colors" size={22} />
                     </motion.div>
-                    <h3 className="font-bold text-[#02334E] text-base mb-2">{area.title}</h3>
-                    <p className="text-gray-500 text-sm leading-relaxed">{area.desc}</p>
-                    <div className="mt-4 flex items-center gap-1 text-[#C8A065] text-sm font-semibold">
+                    <h3 className="font-bold text-[#0F172A] text-base mb-2">{area.title}</h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">{area.desc}</p>
+                    <div className="mt-4 flex items-center gap-1 text-[#3B82F6] text-sm font-semibold">
                       Learn more
                       <motion.span animate={{ x: [0, 4, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}>
                         <ArrowRight size={14} />
@@ -243,7 +249,7 @@ export default function HomePage() {
           </StaggerChildren>
           <FadeUp className="text-center mt-10">
             <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-              <Link href="/practice-areas" className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#02334E] text-[#02334E] font-semibold rounded hover:bg-[#02334E] hover:text-white transition-colors text-sm">
+              <Link href="/practice-areas" className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#0F172A] text-[#0F172A] font-semibold rounded-lg hover:bg-[#0F172A] hover:text-white transition-colors text-sm">
                 View All Practice Areas
               </Link>
             </motion.div>
@@ -252,21 +258,21 @@ export default function HomePage() {
       </section>
 
       {/* ── Testimonials ─────────────────────────────────────────── */}
-      <section className="section-padding bg-[#02334E]">
+      <section className="section-padding bg-[#0F172A]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
             <FadeUp>
-              <p className="text-[#C8A065] text-xs font-semibold uppercase tracking-widest mb-2">Client Stories</p>
+              <p className="text-[#3B82F6] text-xs font-semibold uppercase tracking-widest mb-2">Client Stories</p>
               <h2 className="text-3xl md:text-4xl font-black text-white">What Our Clients Say</h2>
-              <DrawLine className="w-16 mx-auto mt-4 bg-[#C8A065]/40" />
+              <DrawLine className="w-16 mx-auto mt-4 bg-[#3B82F6]/40" />
             </FadeUp>
           </div>
           <StaggerChildren className="grid md:grid-cols-3 gap-8" stagger={0.15}>
             {testimonials.map((t) => (
               <StaggerItem key={t.name}>
                 <motion.div
-                  className="bg-white/5 border border-white/10 rounded-xl p-7 h-full"
-                  whileHover={{ backgroundColor: "rgba(255,255,255,0.09)", borderColor: "rgba(200,160,101,0.4)", y: -4 }}
+                  className="bg-white/5 border border-white/8 rounded-xl p-7 h-full"
+                  whileHover={{ backgroundColor: "rgba(59,130,246,0.08)", borderColor: "rgba(59,130,246,0.3)", y: -4 }}
                   transition={{ duration: 0.25 }}
                 >
                   <div className="flex gap-1 mb-4">
@@ -278,27 +284,27 @@ export default function HomePage() {
                         viewport={{ once: true }}
                         transition={{ delay: 0.3 + i * 0.08, duration: 0.3, ease: "backOut" }}
                       >
-                        <Star size={14} className="text-[#C8A065] fill-[#C8A065]" />
+                        <Star size={14} className="text-[#3B82F6] fill-[#3B82F6]" />
                       </motion.div>
                     ))}
                   </div>
-                  <p className="text-white/80 text-sm leading-relaxed mb-5 italic">&ldquo;{t.text}&rdquo;</p>
+                  <p className="text-white/70 text-sm leading-relaxed mb-5 italic">&ldquo;{t.text}&rdquo;</p>
                   <div>
                     <p className="text-white font-semibold text-sm">{t.name}</p>
-                    <p className="text-white/50 text-xs">{t.role}</p>
+                    <p className="text-white/40 text-xs">{t.role}</p>
                   </div>
                 </motion.div>
               </StaggerItem>
             ))}
           </StaggerChildren>
           <FadeIn className="text-center mt-8">
-            <p className="text-white/40 text-sm">Join 500+ clients who trust Invictus Law Practice</p>
+            <p className="text-white/30 text-sm">Join 500+ clients who trust Invictus Law Practice</p>
           </FadeIn>
         </div>
       </section>
 
       {/* ── CTA Banner ───────────────────────────────────────────── */}
-      <section className="section-padding bg-[#C8A065]">
+      <section className="section-padding bg-gradient-to-br from-[#1D4ED8] to-[#3B82F6]">
         <div className="max-w-3xl mx-auto text-center">
           <ScaleIn>
             <motion.div
@@ -314,12 +320,12 @@ export default function HomePage() {
             <p className="text-white/80 mb-8">Schedule your free consultation today. Our team is ready to listen, advise, and act.</p>
             <div className="flex flex-wrap justify-center gap-4">
               <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                <Link href="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#02334E] text-white font-semibold rounded hover:bg-[#034568] transition-colors">
+                <Link href="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-[#1D4ED8] font-semibold rounded-lg hover:bg-white/90 transition-colors">
                   Book Free Consultation <ArrowRight size={16} />
                 </Link>
               </motion.div>
               <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                <a href="tel:+911234567890" className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/20 border border-white/40 text-white font-semibold rounded hover:bg-white/30 transition-colors">
+                <a href="tel:+911234567890" className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/15 border border-white/30 text-white font-semibold rounded-lg hover:bg-white/25 transition-colors">
                   <Phone size={16} /> Call Us Now
                 </a>
               </motion.div>

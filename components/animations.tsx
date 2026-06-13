@@ -258,7 +258,7 @@ export function DrawLine({ className = "" }: { className?: string }) {
   return (
     <motion.div
       ref={ref}
-      className={`h-px bg-[#C8A065] ${className}`}
+      className={`h-px bg-[#3B82F6] ${className}`}
       initial={{ scaleX: 0, originX: 0 }}
       animate={inView ? { scaleX: 1 } : {}}
       transition={{ duration: 0.8, ease }}

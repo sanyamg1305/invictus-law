@@ -102,65 +102,65 @@ export default async function PracticeAreaPage({ params }: { params: Promise<{ s
 
   return (
     <>
-      <section className="bg-[#02334E] text-white py-24 px-6">
+      <section className="bg-[#0F172A] text-white py-24 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 rounded-lg bg-[#C8A065] flex items-center justify-center">
+            <div className="w-12 h-12 rounded-lg bg-[#3B82F6] flex items-center justify-center">
               <area.icon className="text-white" size={22} />
             </div>
-            <p className="text-[#C8A065] text-xs font-semibold uppercase tracking-widest">Practice Area</p>
+            <p className="text-[#3B82F6] text-xs font-semibold uppercase tracking-widest">Practice Area</p>
           </div>
           <h1 className="text-4xl md:text-5xl font-black mb-4">{area.title}</h1>
-          <p className="text-white/70 text-lg max-w-2xl">{area.tagline}</p>
+          <p className="text-white/60 text-lg max-w-2xl">{area.tagline}</p>
         </div>
       </section>
 
       <section className="section-padding bg-white">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2">
-            <h2 className="text-2xl font-black text-[#02334E] mb-4">Overview</h2>
-            <p className="text-gray-600 leading-relaxed mb-10">{area.overview}</p>
+            <h2 className="text-2xl font-black text-[#0F172A] mb-4">Overview</h2>
+            <p className="text-gray-500 leading-relaxed mb-10">{area.overview}</p>
 
-            <h2 className="text-2xl font-black text-[#02334E] mb-6">Our Services</h2>
+            <h2 className="text-2xl font-black text-[#0F172A] mb-6">Our Services</h2>
             <div className="grid sm:grid-cols-2 gap-3 mb-10">
               {area.services.map((s) => (
                 <div key={s} className="flex items-start gap-3">
-                  <CheckCircle2 className="mt-0.5 shrink-0 text-[#C8A065]" size={18} />
-                  <span className="text-gray-700 text-sm">{s}</span>
+                  <CheckCircle2 className="mt-0.5 shrink-0 text-[#3B82F6]" size={18} />
+                  <span className="text-gray-600 text-sm">{s}</span>
                 </div>
               ))}
             </div>
 
-            <h2 className="text-2xl font-black text-[#02334E] mb-6">Frequently Asked Questions</h2>
+            <h2 className="text-2xl font-black text-[#0F172A] mb-6">Frequently Asked Questions</h2>
             <div className="space-y-6">
               {area.faqs.map((faq) => (
-                <div key={faq.q} className="border-l-2 border-[#C8A065] pl-5">
-                  <h3 className="font-bold text-[#02334E] mb-2">{faq.q}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{faq.a}</p>
+                <div key={faq.q} className="border-l-2 border-[#3B82F6] pl-5">
+                  <h3 className="font-bold text-[#0F172A] mb-2">{faq.q}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{faq.a}</p>
                 </div>
               ))}
             </div>
           </div>
 
           <div>
-            <div className="bg-[#02334E] rounded-xl p-7 text-white sticky top-24">
+            <div className="bg-[#0F172A] rounded-xl p-7 text-white sticky top-24">
               <h3 className="font-black text-lg mb-2">Why Choose Invictus</h3>
-              <p className="text-white/60 text-sm mb-5">What sets our {area.title} practice apart:</p>
+              <p className="text-white/50 text-sm mb-5">What sets our {area.title} practice apart:</p>
               <ul className="space-y-3 mb-6">
                 {area.whyUs.map((w) => (
-                  <li key={w} className="flex gap-2.5 text-sm text-white/80">
-                    <CheckCircle2 className="shrink-0 mt-0.5 text-[#C8A065]" size={16} />
+                  <li key={w} className="flex gap-2.5 text-sm text-white/70">
+                    <CheckCircle2 className="shrink-0 mt-0.5 text-[#3B82F6]" size={16} />
                     {w}
                   </li>
                 ))}
               </ul>
               <Link
                 href="/contact"
-                className="block text-center px-5 py-3 bg-[#C8A065] text-white font-semibold rounded hover:bg-[#a8844a] transition-colors text-sm"
+                className="block text-center px-5 py-3 bg-[#3B82F6] text-white font-semibold rounded-lg hover:bg-[#2563EB] transition-colors text-sm"
               >
                 Book a Free Consultation
               </Link>
-              <Link href="/practice-areas" className="block text-center mt-3 text-white/50 text-sm hover:text-white transition-colors">
+              <Link href="/practice-areas" className="block text-center mt-3 text-white/40 text-sm hover:text-white transition-colors">
                 ← All Practice Areas
               </Link>
             </div>
@@ -168,11 +168,11 @@ export default async function PracticeAreaPage({ params }: { params: Promise<{ s
         </div>
       </section>
 
-      <section className="section-padding bg-[#C8A065]">
+      <section className="section-padding bg-gradient-to-br from-[#1D4ED8] to-[#3B82F6]">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl font-black text-white mb-4">Ready to Get Expert {area.title} Advice?</h2>
           <p className="text-white/80 mb-8">Speak with one of our specialists today — at no cost and no obligation.</p>
-          <Link href="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#02334E] text-white font-semibold rounded hover:bg-[#034568] transition-colors">
+          <Link href="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-[#1D4ED8] font-semibold rounded-lg hover:bg-white/90 transition-colors">
             Request Free Consultation <ArrowRight size={16} />
           </Link>
         </div>
