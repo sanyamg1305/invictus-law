@@ -56,117 +56,244 @@ export default function HomePage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <section className="relative bg-[#02334E] text-white overflow-hidden min-h-[90vh] flex items-center">
-        {/* Crosshatch grid overlay */}
+      <section className="relative bg-[#02334E] text-white overflow-hidden min-h-screen flex items-center">
+        {/* Fine grid overlay */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             backgroundImage:
-              "repeating-linear-gradient(90deg,#fff 0px,#fff 1px,transparent 1px,transparent 80px),repeating-linear-gradient(0deg,#fff 0px,#fff 1px,transparent 1px,transparent 80px)",
-            opacity: 0.03,
+              "repeating-linear-gradient(90deg,#fff 0px,#fff 1px,transparent 1px,transparent 60px),repeating-linear-gradient(0deg,#fff 0px,#fff 1px,transparent 1px,transparent 60px)",
+            opacity: 0.025,
+          }}
+        />
+
+        {/* Radial glow — gold, bottom-left */}
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            width: "70vw",
+            height: "70vw",
+            bottom: "-20vw",
+            left: "-15vw",
+            background: "radial-gradient(circle, rgba(212,167,84,0.18) 0%, transparent 70%)",
+          }}
+        />
+        {/* Radial glow — teal, top-right */}
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            width: "55vw",
+            height: "55vw",
+            top: "-15vw",
+            right: "-10vw",
+            background: "radial-gradient(circle, rgba(6,182,212,0.10) 0%, transparent 65%)",
           }}
         />
 
         {/* Giant ghosted INVICTUS text */}
         <div
-          className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
+          className="absolute inset-0 flex items-end justify-center pointer-events-none select-none overflow-hidden pb-0"
           aria-hidden="true"
         >
           <span
             className="text-white font-black leading-none whitespace-nowrap"
             style={{
               fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(8rem, 22vw, 22rem)",
-              opacity: 0.06,
+              fontSize: "clamp(7rem, 20vw, 20rem)",
+              opacity: 0.04,
               letterSpacing: "-0.02em",
+              lineHeight: 0.85,
             }}
           >
             INVICTUS
           </span>
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-16 items-center w-full">
+        {/* Decorative scales of justice SVG — right edge */}
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none select-none hidden xl:block" aria-hidden="true" style={{ opacity: 0.055 }}>
+          <svg width="420" height="520" viewBox="0 0 420 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="210" y1="40" x2="210" y2="480" stroke="white" strokeWidth="6" strokeLinecap="round"/>
+            <line x1="80" y1="140" x2="340" y2="140" stroke="white" strokeWidth="6" strokeLinecap="round"/>
+            <line x1="210" y1="140" x2="210" y2="60" stroke="white" strokeWidth="5"/>
+            <circle cx="210" cy="52" r="14" stroke="white" strokeWidth="5"/>
+            {/* Left pan arm */}
+            <line x1="80" y1="140" x2="50" y2="240" stroke="white" strokeWidth="4" strokeLinecap="round"/>
+            <line x1="80" y1="140" x2="110" y2="240" stroke="white" strokeWidth="4" strokeLinecap="round"/>
+            <path d="M40 240 Q80 268 120 240" stroke="white" strokeWidth="5" strokeLinecap="round" fill="none"/>
+            {/* Right pan arm */}
+            <line x1="340" y1="140" x2="310" y2="240" stroke="white" strokeWidth="4" strokeLinecap="round"/>
+            <line x1="340" y1="140" x2="370" y2="240" stroke="white" strokeWidth="4" strokeLinecap="round"/>
+            <path d="M300 240 Q340 268 380 240" stroke="white" strokeWidth="5" strokeLinecap="round" fill="none"/>
+            {/* Base */}
+            <path d="M150 480 L270 480" stroke="white" strokeWidth="6" strokeLinecap="round"/>
+            <path d="M175 480 L210 380" stroke="white" strokeWidth="4" strokeLinecap="round"/>
+            <path d="M245 480 L210 380" stroke="white" strokeWidth="4" strokeLinecap="round"/>
+          </svg>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-6 py-28 lg:py-32 grid lg:grid-cols-[1fr_420px] gap-16 items-center w-full">
           <div>
-            <HeroText delay={0.1}>
-              <div className="inline-flex items-center gap-2 mb-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#FEDDDD] animate-pulse" />
-                <p className="text-[#FEDDDD] text-xs font-semibold uppercase tracking-widest">
-                  Invictus Law Practice
-                </p>
+            {/* Badge row */}
+            <HeroText delay={0.05}>
+              <div className="flex flex-wrap items-center gap-3 mb-8">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#D4A754]/40 bg-[#D4A754]/10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#D4A754] animate-pulse" />
+                  <p className="text-[#D4A754] text-xs font-semibold uppercase tracking-widest">Invictus Law Practice</p>
+                </div>
               </div>
             </HeroText>
-            <HeroText delay={0.25}>
+
+            {/* Headline */}
+            <HeroText delay={0.18}>
               <h1
-                className="text-5xl md:text-6xl lg:text-7xl leading-tight mb-6"
-                style={{ fontFamily: "'Playfair Display', serif" }}
+                className="font-black leading-[1.05] mb-6"
+                style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(3rem, 6vw, 5.5rem)" }}
               >
                 Relentless<br />
                 Advocacy.<br />
-                <em>Uncompromising</em><br />
+                <span
+                  style={{
+                    background: "linear-gradient(110deg, #D4A754 0%, #F5D08A 40%, #C8913A 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  <em>Uncompromising</em>
+                </span><br />
                 Results.
               </h1>
             </HeroText>
-            <HeroText delay={0.4}>
-              <p className="text-white/60 text-lg leading-relaxed mb-8 max-w-lg">
-                We combine sharp legal expertise with a client-first approach to deliver outcomes that matter. From corporate transactions to courtroom battles — Invictus stands unconquered.
+
+            <HeroText delay={0.34}>
+              <p className="text-white/55 text-lg leading-relaxed mb-10 max-w-[500px]">
+                Sharp legal expertise meets a relentless client-first commitment. From corporate transactions to courtroom battles — Invictus stands unconquered.
               </p>
             </HeroText>
-            <HeroText delay={0.55}>
-              <div className="flex flex-wrap gap-4">
-                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                  <Link href="/contact" className="inline-flex items-center gap-2 px-6 py-3.5 bg-white text-[#02334E] font-semibold rounded-lg hover:bg-[#FEDDDD] transition-colors text-sm shadow-lg">
+
+            {/* CTA buttons */}
+            <HeroText delay={0.48}>
+              <div className="flex flex-wrap gap-4 mb-10">
+                <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 px-7 py-4 font-semibold rounded-xl text-sm shadow-xl shadow-black/30 transition-all"
+                    style={{ background: "linear-gradient(135deg, #D4A754 0%, #C8913A 100%)", color: "#02334E" }}
+                  >
                     Get a Free Consultation <ArrowRight size={16} />
                   </Link>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                  <Link href="/practice-areas" className="inline-flex items-center gap-2 px-6 py-3.5 border border-white/30 text-white font-semibold rounded-lg hover:bg-white/5 transition-colors text-sm">
+                <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
+                  <Link href="/practice-areas" className="inline-flex items-center gap-2 px-7 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/8 transition-colors text-sm backdrop-blur-sm">
                     Explore Practice Areas
                   </Link>
                 </motion.div>
               </div>
             </HeroText>
-            <HeroText delay={0.7}>
-              <p className="mt-8 text-white/30 text-sm flex items-center gap-1.5">
-                <Clock size={14} className="text-[#FEDDDD]" /> Limited free consultation slots available this week
+
+            {/* Floating credential pills */}
+            <HeroText delay={0.62}>
+              <div className="flex flex-wrap gap-3">
+                {[
+                  { icon: "⚖️", label: "15+ Years of Excellence" },
+                  { icon: "✦", label: "98% Success Rate" },
+                  { icon: "🏛️", label: "500+ Clients Served" },
+                ].map((pill) => (
+                  <span
+                    key={pill.label}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-white/70 border border-white/10 bg-white/5 backdrop-blur-sm"
+                  >
+                    <span>{pill.icon}</span> {pill.label}
+                  </span>
+                ))}
+              </div>
+            </HeroText>
+
+            <HeroText delay={0.76}>
+              <p className="mt-6 text-white/25 text-xs flex items-center gap-1.5">
+                <Clock size={12} className="text-[#D4A754]" /> Limited free consultation slots available this week
               </p>
             </HeroText>
           </div>
 
-          {/* Lead Capture Form */}
+          {/* Lead Capture Form — glassmorphism card */}
           <motion.div
-            className="bg-white rounded-2xl overflow-hidden shadow-2xl shadow-black/30"
-            initial={{ opacity: 0, x: 60, scale: 0.95 }}
+            className="relative rounded-2xl overflow-hidden"
+            initial={{ opacity: 0, x: 60, scale: 0.94 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 0.9, ease, delay: 0.3 }}
+            transition={{ duration: 1, ease, delay: 0.25 }}
           >
-            {/* Navy top accent bar */}
-            <div className="h-1.5 bg-[#02334E]" />
-            <div className="p-8">
-              <h2 className="text-[#02334E] font-black text-xl mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>Talk to a Lawyer Now</h2>
-              <p className="text-gray-400 text-sm mb-6">Free, confidential 30-minute consultation.</p>
-              <form className="flex flex-col gap-4">
-                <input type="text" placeholder="Your Full Name" className="border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#02334E] focus:border-transparent transition-shadow" />
-                <input type="email" placeholder="Email Address" className="border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#02334E] focus:border-transparent transition-shadow" />
-                <input type="tel" placeholder="Phone Number" className="border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#02334E] focus:border-transparent transition-shadow" />
-                <select className="border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#02334E]">
-                  <option value="">Select Legal Issue</option>
-                  <option>Corporate Law</option>
-                  <option>Litigation &amp; Dispute Resolution</option>
-                  <option>Intellectual Property</option>
-                  <option>Employment Law</option>
-                  <option>Real Estate &amp; Property Law</option>
-                  <option>Taxation &amp; Compliance</option>
-                  <option>Other</option>
-                </select>
-                <textarea placeholder="Brief description of your matter (optional)" rows={3} className="border border-gray-200 rounded-lg px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#02334E] focus:border-transparent transition-shadow" />
-                <motion.button type="submit" className="w-full bg-[#02334E] text-white font-semibold py-3.5 rounded-lg text-sm" whileHover={{ backgroundColor: "#011E30", scale: 1.01 }} whileTap={{ scale: 0.98 }} transition={{ duration: 0.15 }}>
-                  Request Free Consultation
-                </motion.button>
-              </form>
-              <p className="text-xs text-gray-400 mt-3 text-center">Your information is 100% confidential.</p>
+            {/* Glow ring behind card */}
+            <div
+              className="absolute -inset-px rounded-2xl pointer-events-none"
+              style={{
+                background: "linear-gradient(135deg, rgba(212,167,84,0.5) 0%, rgba(2,51,78,0) 50%, rgba(6,182,212,0.25) 100%)",
+              }}
+            />
+            <div
+              className="relative rounded-2xl overflow-hidden"
+              style={{
+                background: "rgba(255,255,255,0.96)",
+                boxShadow: "0 32px 80px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.08)",
+              }}
+            >
+              {/* Gold gradient top bar */}
+              <div style={{ height: 4, background: "linear-gradient(90deg, #D4A754 0%, #F5D08A 50%, #C8913A 100%)" }} />
+              <div className="p-8">
+                <div className="flex items-center gap-2 mb-1">
+                  <Phone size={15} className="text-[#D4A754]" />
+                  <h2 className="text-[#02334E] font-black text-xl" style={{ fontFamily: "'Playfair Display', serif" }}>Talk to a Lawyer Now</h2>
+                </div>
+                <p className="text-gray-400 text-sm mb-6">Free, confidential 30-minute consultation.</p>
+                <form className="flex flex-col gap-3.5">
+                  <input type="text" placeholder="Your Full Name" className="border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#D4A754]/50 focus:border-[#D4A754] transition-all bg-gray-50/60" />
+                  <input type="email" placeholder="Email Address" className="border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#D4A754]/50 focus:border-[#D4A754] transition-all bg-gray-50/60" />
+                  <input type="tel" placeholder="Phone Number" className="border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#D4A754]/50 focus:border-[#D4A754] transition-all bg-gray-50/60" />
+                  <select className="border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#D4A754]/50 focus:border-[#D4A754] bg-gray-50/60">
+                    <option value="">Select Legal Issue</option>
+                    <option>Corporate Law</option>
+                    <option>Litigation &amp; Dispute Resolution</option>
+                    <option>Intellectual Property</option>
+                    <option>Employment Law</option>
+                    <option>Real Estate &amp; Property Law</option>
+                    <option>Taxation &amp; Compliance</option>
+                    <option>Other</option>
+                  </select>
+                  <textarea placeholder="Brief description of your matter (optional)" rows={3} className="border border-gray-200 rounded-xl px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#D4A754]/50 focus:border-[#D4A754] transition-all bg-gray-50/60" />
+                  <motion.button
+                    type="submit"
+                    className="w-full font-bold py-4 rounded-xl text-sm tracking-wide"
+                    style={{ background: "linear-gradient(135deg, #02334E 0%, #01223A 100%)", color: "white" }}
+                    whileHover={{ scale: 1.015, boxShadow: "0 8px 30px rgba(2,51,78,0.4)" }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    Request Free Consultation →
+                  </motion.button>
+                </form>
+                <div className="flex items-center justify-center gap-1.5 mt-4">
+                  <CheckCircle2 size={12} className="text-green-500" />
+                  <p className="text-xs text-gray-400">100% confidential · No obligation</p>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
+        >
+          <span className="text-white/25 text-[10px] uppercase tracking-widest font-medium">Scroll</span>
+          <motion.div
+            className="w-px h-10 bg-gradient-to-b from-white/30 to-transparent"
+            animate={{ scaleY: [1, 0.4, 1], opacity: [0.4, 1, 0.4] }}
+            transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+          />
+        </motion.div>
       </section>
 
       {/* ── Stats Bar ─────────────────────────────────────────────── */}
