@@ -1,6 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, CheckCircle2, Building2, Gavel, Lightbulb, Users, Home, Receipt } from "lucide-react";
+import { ArrowRight, ArrowLeft, Building2, Gavel, Lightbulb, Users, Home, Receipt, CheckCircle2, ChevronDown } from "lucide-react";
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { FadeUp, SlideInLeft, SlideInRight, StaggerChildren, StaggerItem } from "@/components/animations";
 
 const areaData: Record<string, {
   icon: React.ElementType;
@@ -95,86 +100,285 @@ export async function generateStaticParams() {
   return Object.keys(areaData).map((slug) => ({ slug }));
 }
 
+function FAQItem({ faq, index }: { faq: { q: string; a: string }; index: number }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <motion.div
+      className="border border-gray-100 rounded-xl overflow-hidden"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.08 }}
+    >
+      <button
+        className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-gray-50 transition-colors"
+        onClick={() => setOpen(!open)}
+      >
+        <span className="font-bold text-[#02334E] text-sm pr-4">{faq.q}</span>
+        <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
+          <ChevronDown size={16} className="text-[#02334E]/40 shrink-0" />
+        </motion.div>
+      </button>
+      <motion.div
+        initial={false}
+        animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
+        transition={{ duration: 0.25 }}
+        className="overflow-hidden"
+      >
+        <p className="px-6 pb-5 text-gray-500 text-sm leading-relaxed">{faq.a}</p>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 export default async function PracticeAreaPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const area = areaData[slug];
   if (!area) notFound();
+  const Icon = area.icon;
 
   return (
     <>
-      <section className="bg-[#02334E] text-white py-24 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 rounded-lg bg-[#FEDDDD] flex items-center justify-center">
-              <area.icon className="text-[#02334E]" size={22} />
+      {/* ── HERO ─────────────────────────────────────────────────── */}
+      <section className="relative bg-[#02334E] text-white overflow-hidden py-28 px-6">
+        {/* Dot grid */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)",
+            backgroundSize: "36px 36px",
+          }}
+        />
+        {/* Ghost title */}
+        <div
+          className="absolute inset-0 flex items-center justify-end pr-8 pointer-events-none select-none overflow-hidden"
+          aria-hidden="true"
+        >
+          <span
+            className="text-white font-black leading-none"
+            style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: "clamp(5rem, 14vw, 14rem)",
+              opacity: 0.04,
+              letterSpacing: "-0.03em",
+            }}
+          >
+            {area.title.split(" ")[0]}
+          </span>
+        </div>
+
+        <div className="relative max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Link
+              href="/practice-areas"
+              className="inline-flex items-center gap-2 text-white/40 hover:text-white text-xs font-semibold uppercase tracking-wider transition-colors mb-8"
+            >
+              <ArrowLeft size={14} /> All Practice Areas
+            </Link>
+          </motion.div>
+
+          <motion.div
+            className="flex items-center gap-4 mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10 flex items-center justify-center">
+              <Icon size={26} className="text-white" />
             </div>
-            <p className="text-[#FEDDDD] text-xs font-semibold uppercase tracking-widest">Practice Area</p>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-black mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>{area.title}</h1>
-          <p className="text-white/60 text-lg max-w-2xl">{area.tagline}</p>
+            <span className="text-white/40 text-[10px] font-bold uppercase tracking-[0.3em]">Practice Area</span>
+          </motion.div>
+
+          <motion.h1
+            className="text-4xl md:text-6xl font-black leading-tight mb-4"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
+            {area.title}
+          </motion.h1>
+
+          <motion.div
+            className="w-12 h-[3px] bg-[#FEDDDD] mb-5 rounded-full"
+            initial={{ scaleX: 0, originX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          />
+
+          <motion.p
+            className="text-white/55 text-lg max-w-2xl leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.35 }}
+          >
+            {area.tagline}
+          </motion.p>
         </div>
       </section>
 
+      {/* ── MAIN CONTENT ─────────────────────────────────────────── */}
       <section className="section-padding bg-white">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-3 gap-12">
-          <div className="lg:col-span-2">
-            <h2 className="text-2xl font-black text-[#0A1628] mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>Overview</h2>
-            <p className="text-[#64748B] leading-relaxed mb-10">{area.overview}</p>
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-[1fr_320px] gap-14">
+          {/* Left */}
+          <div>
+            {/* Overview */}
+            <SlideInLeft>
+              <p className="text-[#02334E]/40 text-[10px] font-bold uppercase tracking-[0.3em] mb-3">Overview</p>
+              <h2
+                className="text-2xl md:text-3xl font-black text-[#02334E] mb-4"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
+                About This Practice
+              </h2>
+              <div className="w-10 h-[2px] bg-[#FEDDDD] mb-5 rounded-full" />
+              <p className="text-gray-500 leading-relaxed text-[15px]">{area.overview}</p>
+            </SlideInLeft>
 
-            <h2 className="text-2xl font-black text-[#0A1628] mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>Our Services</h2>
-            <div className="grid sm:grid-cols-2 gap-3 mb-10">
-              {area.services.map((s) => (
-                <div key={s} className="flex items-start gap-3">
-                  <CheckCircle2 className="mt-0.5 shrink-0 text-[#02334E]" size={18} />
-                  <span className="text-[#64748B] text-sm">{s}</span>
-                </div>
-              ))}
+            {/* Services */}
+            <div className="mt-14">
+              <FadeUp>
+                <p className="text-[#02334E]/40 text-[10px] font-bold uppercase tracking-[0.3em] mb-3">What We Offer</p>
+                <h2
+                  className="text-2xl md:text-3xl font-black text-[#02334E] mb-4"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
+                  Our Services
+                </h2>
+                <div className="w-10 h-[2px] bg-[#FEDDDD] mb-8 rounded-full" />
+              </FadeUp>
+              <StaggerChildren className="grid sm:grid-cols-2 gap-3" stagger={0.06}>
+                {area.services.map((s, i) => (
+                  <StaggerItem key={s}>
+                    <motion.div
+                      className="flex items-start gap-3 p-4 rounded-xl border border-gray-100 hover:border-[#02334E]/20 hover:bg-gray-50 transition-all group"
+                      whileHover={{ x: 3 }}
+                    >
+                      <div className="w-5 h-5 rounded-full bg-[#02334E]/8 group-hover:bg-[#02334E] flex items-center justify-center shrink-0 mt-0.5 transition-colors">
+                        <CheckCircle2 size={11} className="text-[#02334E] group-hover:text-white transition-colors" />
+                      </div>
+                      <span className="text-[#02334E] text-sm font-medium">{s}</span>
+                    </motion.div>
+                  </StaggerItem>
+                ))}
+              </StaggerChildren>
             </div>
 
-            <h2 className="text-2xl font-black text-[#0A1628] mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>Frequently Asked Questions</h2>
-            <div className="space-y-6">
-              {area.faqs.map((faq) => (
-                <div key={faq.q} className="border-l-4 border-[#FEDDDD] pl-5">
-                  <h3 className="font-bold text-[#0A1628] mb-2">{faq.q}</h3>
-                  <p className="text-[#64748B] text-sm leading-relaxed">{faq.a}</p>
-                </div>
-              ))}
+            {/* FAQs */}
+            <div className="mt-14">
+              <FadeUp>
+                <p className="text-[#02334E]/40 text-[10px] font-bold uppercase tracking-[0.3em] mb-3">FAQs</p>
+                <h2
+                  className="text-2xl md:text-3xl font-black text-[#02334E] mb-4"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
+                  Frequently Asked Questions
+                </h2>
+                <div className="w-10 h-[2px] bg-[#FEDDDD] mb-8 rounded-full" />
+              </FadeUp>
+              <div className="space-y-3">
+                {area.faqs.map((faq, i) => (
+                  <FAQItem key={faq.q} faq={faq} index={i} />
+                ))}
+              </div>
             </div>
           </div>
 
+          {/* Sticky Sidebar */}
           <div>
-            <div className="bg-[#02334E] rounded-xl p-7 text-white sticky top-24">
-              <h3 className="font-black text-lg mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>Why Choose Invictus</h3>
-              <p className="text-white/50 text-sm mb-5">What sets our {area.title} practice apart:</p>
-              <ul className="space-y-3 mb-6">
-                {area.whyUs.map((w) => (
-                  <li key={w} className="flex gap-2.5 text-sm text-white/70">
-                    <CheckCircle2 className="shrink-0 mt-0.5 text-[#FEDDDD]" size={16} />
-                    {w}
-                  </li>
-                ))}
-              </ul>
+            <div className="sticky top-24 space-y-5">
+              {/* Why Us card */}
+              <motion.div
+                className="bg-[#02334E] rounded-2xl p-7 text-white"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <h3
+                  className="font-black text-lg mb-1"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
+                  Why Choose Invictus
+                </h3>
+                <p className="text-white/40 text-xs mb-5">What sets our {area.title} practice apart</p>
+                <ul className="space-y-3 mb-6">
+                  {area.whyUs.map((w, i) => (
+                    <motion.li
+                      key={w}
+                      className="flex gap-3 text-sm text-white/70"
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                    >
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#FEDDDD] shrink-0 mt-1.5" />
+                      {w}
+                    </motion.li>
+                  ))}
+                </ul>
+                <Link
+                  href="/contact"
+                  className="block text-center px-5 py-3 bg-white text-[#02334E] font-bold rounded-xl hover:bg-gray-100 transition-colors text-sm"
+                >
+                  Book a Free Consultation
+                </Link>
+              </motion.div>
+
+              {/* CTA card */}
+              <motion.div
+                className="bg-gray-50 rounded-2xl p-6 border border-gray-100"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <p className="text-[#02334E] font-bold text-sm mb-1">Need immediate assistance?</p>
+                <p className="text-gray-400 text-xs mb-4">Call us directly for urgent legal matters</p>
+                <a
+                  href="tel:+911234567890"
+                  className="block text-center px-5 py-3 border-2 border-[#02334E] text-[#02334E] font-bold rounded-xl hover:bg-[#02334E] hover:text-white transition-all text-sm"
+                >
+                  +91 12345 67890
+                </a>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA BANNER ───────────────────────────────────────────── */}
+      <section className="section-padding bg-[#02334E] relative overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.025) 1px, transparent 1px)",
+            backgroundSize: "32px 32px",
+          }}
+        />
+        <div className="relative max-w-2xl mx-auto text-center">
+          <FadeUp>
+            <div className="w-12 h-[2px] bg-white/20 mx-auto mb-8 rounded-full" />
+            <h2
+              className="text-3xl md:text-4xl font-black text-white mb-4"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              Ready to Get Expert<br />{area.title} Advice?
+            </h2>
+            <p className="text-white/50 mb-8">Speak with one of our specialists — at no cost, no obligation.</p>
+            <div className="flex flex-wrap justify-center gap-4">
               <Link
                 href="/contact"
-                className="block text-center px-5 py-3 bg-[#FEDDDD] text-[#02334E] font-semibold rounded-lg hover:bg-white transition-colors text-sm"
+                className="group inline-flex items-center gap-2 px-7 py-3.5 bg-white text-[#02334E] font-bold rounded-xl hover:bg-gray-100 transition-colors shadow-lg"
               >
-                Book a Free Consultation
-              </Link>
-              <Link href="/practice-areas" className="block text-center mt-3 text-white/40 text-sm hover:text-white transition-colors">
-                ← All Practice Areas
+                Request Free Consultation <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section-padding bg-[#02334E]">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl font-black text-white mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>Ready to Get Expert {area.title} Advice?</h2>
-          <p className="text-white/70 mb-8">Speak with one of our specialists today — at no cost and no obligation.</p>
-          <Link href="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-[#02334E] font-semibold rounded-lg hover:bg-[#FEDDDD] transition-colors">
-            Request Free Consultation <ArrowRight size={16} />
-          </Link>
+          </FadeUp>
         </div>
       </section>
     </>
