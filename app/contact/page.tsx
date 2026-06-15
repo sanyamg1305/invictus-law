@@ -1,134 +1,351 @@
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+"use client";
+
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { MapPin, Phone, Mail, Clock, ArrowRight } from "lucide-react";
+import {
+  FadeUp,
+  HeroText,
+  DrawLine,
+  SlideInLeft,
+  SlideInRight,
+} from "@/components/animations";
+
+const contactDetails = [
+  {
+    icon: MapPin,
+    label: "Address",
+    value: "12th Floor, Prestige Tower, BKC, Mumbai 400051",
+    href: undefined,
+  },
+  {
+    icon: Phone,
+    label: "Phone",
+    value: "+91 22 4890 1234",
+    href: "tel:+912248901234",
+  },
+  {
+    icon: Mail,
+    label: "Email",
+    value: "info@invictuslaw.in",
+    href: "mailto:info@invictuslaw.in",
+  },
+  {
+    icon: Clock,
+    label: "Office Hours",
+    value: "Mon–Fri: 9 AM – 7 PM | Sat: 10 AM – 2 PM",
+    href: undefined,
+  },
+];
+
+function AnimatedInput({
+  label,
+  type = "text",
+  required = false,
+  placeholder = "",
+  className = "",
+}: {
+  label: string;
+  type?: string;
+  required?: boolean;
+  placeholder?: string;
+  className?: string;
+}) {
+  const [focused, setFocused] = useState(false);
+  return (
+    <div className={className}>
+      <label className="block text-xs font-semibold text-[#0A1628] uppercase tracking-wider mb-1.5">
+        {label} {required && <span className="text-[#02334E]">*</span>}
+      </label>
+      <div className="relative">
+        <input
+          type={type}
+          placeholder={placeholder}
+          required={required}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+          className="w-full border-0 border-b-2 border-gray-200 bg-transparent px-0 py-3 text-sm text-[#0A1628] placeholder-gray-300 focus:outline-none focus:ring-0 transition-colors"
+        />
+        <motion.div
+          className="absolute bottom-0 left-0 h-0.5 bg-[#02334E]"
+          initial={{ width: "0%" }}
+          animate={{ width: focused ? "100%" : "0%" }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        />
+      </div>
+    </div>
+  );
+}
+
+function AnimatedTextarea() {
+  const [focused, setFocused] = useState(false);
+  return (
+    <div>
+      <label className="block text-xs font-semibold text-[#0A1628] uppercase tracking-wider mb-1.5">
+        Your Message <span className="text-[#02334E]">*</span>
+      </label>
+      <div className="relative">
+        <textarea
+          rows={5}
+          placeholder="Briefly describe your legal matter..."
+          required
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+          className="w-full border-0 border-b-2 border-gray-200 bg-transparent px-0 py-3 text-sm text-[#0A1628] placeholder-gray-300 focus:outline-none focus:ring-0 resize-none transition-colors"
+        />
+        <motion.div
+          className="absolute bottom-0 left-0 h-0.5 bg-[#02334E]"
+          initial={{ width: "0%" }}
+          animate={{ width: focused ? "100%" : "0%" }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        />
+      </div>
+    </div>
+  );
+}
+
+function AnimatedSelect() {
+  const [focused, setFocused] = useState(false);
+  return (
+    <div>
+      <label className="block text-xs font-semibold text-[#0A1628] uppercase tracking-wider mb-1.5">
+        Practice Area
+      </label>
+      <div className="relative">
+        <select
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+          className="w-full border-0 border-b-2 border-gray-200 bg-transparent px-0 py-3 text-sm text-gray-500 focus:outline-none focus:ring-0 appearance-none cursor-pointer transition-colors"
+        >
+          <option value="">Select a practice area</option>
+          <option>Corporate Law</option>
+          <option>Litigation &amp; Dispute Resolution</option>
+          <option>Intellectual Property</option>
+          <option>Employment Law</option>
+          <option>Real Estate &amp; Property Law</option>
+          <option>Taxation &amp; Compliance</option>
+          <option>Other</option>
+        </select>
+        <motion.div
+          className="absolute bottom-0 left-0 h-0.5 bg-[#02334E]"
+          initial={{ width: "0%" }}
+          animate={{ width: focused ? "100%" : "0%" }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        />
+      </div>
+    </div>
+  );
+}
 
 export default function ContactPage() {
+  const [submitted, setSubmitted] = useState(false);
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setSubmitted(true);
+  }
+
   return (
     <>
-      <section className="bg-[#02334E] text-white py-24 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-[#FEDDDD] text-xs font-semibold uppercase tracking-widest mb-3">Get in Touch</p>
-          <h1 className="text-4xl md:text-5xl font-black mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>Contact Us</h1>
-          <p className="text-white/60 text-lg max-w-xl mx-auto">
-            Reach out to schedule your free consultation or ask any questions. We respond within 24 hours.
-          </p>
+      {/* Hero */}
+      <section className="relative bg-[#02334E] text-white py-28 px-6 overflow-hidden">
+        {/* Dot-grid texture */}
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: "radial-gradient(circle, #FEDDDD 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+        <div className="relative max-w-4xl mx-auto text-center">
+          <HeroText delay={0.05}>
+            <p className="text-[#FEDDDD] text-xs font-semibold uppercase tracking-widest mb-4">
+              Reach Out
+            </p>
+          </HeroText>
+          <HeroText delay={0.18}>
+            <h1
+              className="text-4xl md:text-6xl font-black mb-6 leading-tight"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              Get In{" "}
+              <span className="text-[#FEDDDD]">Touch</span>
+            </h1>
+          </HeroText>
+          <motion.p
+            className="text-white/70 text-lg max-w-xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
+          >
+            Reach out to schedule your consultation or ask any questions. We respond within 24 hours.
+          </motion.p>
+          <motion.div
+            className="mt-8 flex justify-center"
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
+          >
+            <DrawLine className="w-24" />
+          </motion.div>
         </div>
       </section>
 
+      {/* Main Content */}
       <section className="section-padding bg-white">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12">
-          {/* Form */}
-          <div>
-            <h2 className="text-2xl font-black text-[#0A1628] mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>Send Us a Message</h2>
-            <p className="text-[#64748B] text-sm mb-8">Fill out the form and our team will get back to you promptly.</p>
-            <form className="flex flex-col gap-5">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-semibold text-[#0A1628] uppercase tracking-wider mb-1.5">First Name *</label>
-                  <input type="text" className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#02334E]" />
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-[#0A1628] uppercase tracking-wider mb-1.5">Last Name *</label>
-                  <input type="text" className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#02334E]" />
-                </div>
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-[#0A1628] uppercase tracking-wider mb-1.5">Email Address *</label>
-                <input type="email" className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#02334E]" />
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-[#0A1628] uppercase tracking-wider mb-1.5">Phone Number</label>
-                <input type="tel" className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#02334E]" />
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-[#0A1628] uppercase tracking-wider mb-1.5">Practice Area</label>
-                <select className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#02334E]">
-                  <option value="">Select a practice area</option>
-                  <option>Corporate Law</option>
-                  <option>Litigation &amp; Dispute Resolution</option>
-                  <option>Intellectual Property</option>
-                  <option>Employment Law</option>
-                  <option>Real Estate &amp; Property Law</option>
-                  <option>Taxation &amp; Compliance</option>
-                  <option>Other</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-[#0A1628] uppercase tracking-wider mb-1.5">Your Message *</label>
-                <textarea
-                  rows={5}
-                  placeholder="Briefly describe your legal matter..."
-                  className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#02334E]"
-                />
-              </div>
-              <p className="text-xs text-[#64748B]">
-                By submitting this form, you acknowledge that no attorney-client relationship is formed until formally agreed upon. Your information is kept strictly confidential.
-              </p>
-              <button type="submit" className="bg-[#02334E] text-white font-semibold py-4 rounded-lg hover:bg-[#011E30] transition-colors text-sm">
-                Submit Inquiry
-              </button>
-            </form>
-          </div>
-
-          {/* Contact Info */}
-          <div className="flex flex-col gap-8">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-5 gap-16 items-start">
+          {/* Left: Contact Info (40%) */}
+          <SlideInLeft className="lg:col-span-2">
             <div>
-              <h2 className="text-2xl font-black text-[#0A1628] mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>Our Office</h2>
-              <div className="space-y-5">
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-[#02334E] flex items-center justify-center shrink-0">
-                    <MapPin className="text-[#FEDDDD]" size={18} />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-[#0A1628] text-sm">Address</p>
-                    <p className="text-[#64748B] text-sm mt-0.5">123 Legal Avenue, Fort<br />Mumbai, Maharashtra 400001</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-[#02334E] flex items-center justify-center shrink-0">
-                    <Phone className="text-[#FEDDDD]" size={18} />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-[#0A1628] text-sm">Phone</p>
-                    <a href="tel:+911234567890" className="text-[#64748B] text-sm hover:text-[#02334E] transition-colors">+91 12345 67890</a>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-[#02334E] flex items-center justify-center shrink-0">
-                    <Mail className="text-[#FEDDDD]" size={18} />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-[#0A1628] text-sm">Email</p>
-                    <a href="mailto:info@invictuslaw.in" className="text-[#64748B] text-sm hover:text-[#02334E] transition-colors">info@invictuslaw.in</a>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-[#02334E] flex items-center justify-center shrink-0">
-                    <Clock className="text-[#FEDDDD]" size={18} />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-[#0A1628] text-sm">Office Hours</p>
-                    <p className="text-[#64748B] text-sm mt-0.5">Monday – Friday: 9:00 AM – 6:00 PM<br />Saturday: 10:00 AM – 2:00 PM</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+              <p className="text-[#02334E] text-xs font-semibold uppercase tracking-widest mb-3">
+                Our Office
+              </p>
+              <h2
+                className="text-2xl md:text-3xl font-black text-[#0A1628] mb-4"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
+                Contact Information
+              </h2>
+              <DrawLine className="w-16 mb-8" />
 
-            {/* Map Placeholder */}
-            <div className="bg-[#F8FAFC] rounded-xl h-64 flex items-center justify-center border-2 border-dashed border-gray-200">
-              <div className="text-center">
-                <MapPin className="text-[#02334E] mx-auto mb-2" size={32} />
-                <p className="text-[#0A1628] font-semibold text-sm">Google Maps</p>
-                <p className="text-[#64748B] text-xs mt-1">Embed your Google Maps location here</p>
+              <div className="space-y-7">
+                {contactDetails.map(({ icon: Icon, label, value, href }) => (
+                  <motion.div
+                    key={label}
+                    className="flex gap-4"
+                    whileHover={{ x: 3 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <div className="w-10 h-10 rounded-lg bg-[#02334E] flex items-center justify-center shrink-0">
+                      <Icon className="text-[#FEDDDD]" size={18} />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-[#0A1628] text-sm">{label}</p>
+                      {href ? (
+                        <a
+                          href={href}
+                          className="text-[#64748B] text-sm mt-0.5 hover:text-[#02334E] transition-colors leading-relaxed"
+                        >
+                          {value}
+                        </a>
+                      ) : (
+                        <p className="text-[#64748B] text-sm mt-0.5 leading-relaxed">{value}</p>
+                      )}
+                    </div>
+                  </motion.div>
+                ))}
               </div>
-            </div>
 
-            <div className="bg-[#02334E] rounded-xl p-6 text-white">
-              <p className="text-[#FEDDDD] font-semibold text-sm mb-2">Emergency Legal Assistance</p>
-              <p className="text-white/60 text-sm">For urgent legal matters outside of office hours, call our emergency line:</p>
-              <a href="tel:+911234567890" className="text-white font-black text-xl mt-2 block hover:text-[#FEDDDD] transition-colors">
-                +91 12345 67890
-              </a>
+              {/* Emergency card */}
+              <motion.div
+                className="mt-10 rounded-xl p-6 text-white overflow-hidden relative"
+                style={{ background: "linear-gradient(135deg, #02334E 0%, #011E30 100%)" }}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div
+                  className="absolute inset-0 opacity-10"
+                  style={{
+                    backgroundImage: "radial-gradient(circle, #FEDDDD 1px, transparent 1px)",
+                    backgroundSize: "20px 20px",
+                  }}
+                />
+                <div className="relative">
+                  <p className="text-[#FEDDDD] font-bold text-sm mb-1">24/7 Emergency Legal Support</p>
+                  <p className="text-white/60 text-xs mb-3">
+                    For urgent legal matters outside office hours, call our emergency line:
+                  </p>
+                  <a
+                    href="tel:+919820000000"
+                    className="text-white font-black text-xl hover:text-[#FEDDDD] transition-colors"
+                  >
+                    +91 98200 00000
+                  </a>
+                </div>
+              </motion.div>
             </div>
-          </div>
+          </SlideInLeft>
+
+          {/* Right: Form (60%) */}
+          <SlideInRight className="lg:col-span-3" delay={0.1}>
+            <div>
+              <p className="text-[#02334E] text-xs font-semibold uppercase tracking-widest mb-3">
+                Inquire Now
+              </p>
+              <h2
+                className="text-2xl md:text-3xl font-black text-[#0A1628] mb-4"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
+                Send Us A Message
+              </h2>
+              <DrawLine className="w-16 mb-8" />
+
+              {submitted ? (
+                <motion.div
+                  className="rounded-2xl border border-green-100 bg-green-50 p-10 text-center"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <div className="w-16 h-16 rounded-full bg-[#02334E] flex items-center justify-center mx-auto mb-4">
+                    <ArrowRight className="text-[#FEDDDD]" size={24} />
+                  </div>
+                  <h3
+                    className="text-xl font-black text-[#0A1628] mb-2"
+                    style={{ fontFamily: "'Playfair Display', serif" }}
+                  >
+                    Message Received
+                  </h3>
+                  <p className="text-[#64748B] text-sm">
+                    Thank you for reaching out. Our team will get back to you within 24 hours.
+                  </p>
+                </motion.div>
+              ) : (
+                <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                  <div className="grid sm:grid-cols-2 gap-6">
+                    <AnimatedInput label="First Name" required />
+                    <AnimatedInput label="Last Name" required />
+                  </div>
+                  <div className="grid sm:grid-cols-2 gap-6">
+                    <AnimatedInput label="Email Address" type="email" required />
+                    <AnimatedInput label="Phone Number" type="tel" />
+                  </div>
+                  <AnimatedSelect />
+                  <AnimatedTextarea />
+
+                  <div className="flex items-start gap-3">
+                    <input
+                      type="checkbox"
+                      id="disclaimer"
+                      required
+                      className="mt-0.5 w-4 h-4 accent-[#02334E] shrink-0 cursor-pointer"
+                    />
+                    <label htmlFor="disclaimer" className="text-xs text-[#64748B] leading-relaxed cursor-pointer">
+                      By submitting this form, I acknowledge that no attorney-client relationship is formed until formally agreed upon. My information will be kept strictly confidential.
+                    </label>
+                  </div>
+
+                  <motion.button
+                    type="submit"
+                    className="w-full bg-[#02334E] text-white font-bold py-4 rounded-xl text-sm relative overflow-hidden group"
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <motion.span
+                      className="absolute inset-0 bg-white/5"
+                      initial={{ x: "-100%" }}
+                      whileHover={{ x: "100%" }}
+                      transition={{ duration: 0.5, ease: "easeInOut" }}
+                    />
+                    <span className="relative flex items-center justify-center gap-2">
+                      Submit Inquiry <ArrowRight size={16} />
+                    </span>
+                  </motion.button>
+                </form>
+              )}
+            </div>
+          </SlideInRight>
         </div>
       </section>
     </>
