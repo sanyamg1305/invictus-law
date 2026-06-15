@@ -256,12 +256,17 @@ export default function AboutPage() {
                 />
                 <div className="relative text-center p-10">
                   <motion.div
-                    className="w-28 h-28 rounded-full bg-[#FEDDDD]/10 border-2 border-[#FEDDDD]/30 mx-auto mb-5 flex items-center justify-center"
-                    whileHover={{ scale: 1.08, rotate: 5, borderColor: "rgba(254,221,221,0.7)" }}
-                    transition={{ duration: 0.3 }}
+                    className="w-40 h-40 rounded-full bg-[#FEDDDD]/10 border-4 border-[#FEDDDD]/30 mx-auto mb-5 flex items-center justify-center"
+                    whileHover={{
+                      scale: 1.08,
+                      rotate: 4,
+                      borderColor: "rgba(254,221,221,0.7)",
+                      boxShadow: "0 0 0 12px rgba(254,221,221,0.06), 0 0 60px rgba(254,221,221,0.10)",
+                    }}
+                    transition={{ duration: 0.35 }}
                   >
                     <span
-                      className="text-[#FEDDDD] text-4xl font-black"
+                      className="text-[#FEDDDD] text-6xl font-black"
                       style={{ fontFamily: "'Playfair Display', serif" }}
                     >
                       IL
@@ -363,7 +368,7 @@ export default function AboutPage() {
               <StaggerItem key={v.title}>
                 <motion.div
                   className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 text-center h-full group cursor-default"
-                  whileHover={{ y: -10, boxShadow: "0 24px 48px rgba(2,51,78,0.12)" }}
+                  whileHover={{ y: -10, boxShadow: "0 24px 48px rgba(2,51,78,0.14)", borderColor: "#02334E" }}
                   transition={{ duration: 0.3, ease }}
                 >
                   <motion.div
@@ -434,29 +439,43 @@ export default function AboutPage() {
       </section>
 
       {/* ── CTA ──────────────────────────────────────────────── */}
-      <section className="section-padding bg-white relative overflow-hidden">
-        <div className="max-w-2xl mx-auto text-center">
+      <section
+        className="section-padding relative overflow-hidden"
+        style={{ background: "linear-gradient(135deg, #02334E 0%, #011E30 60%, #021F38 100%)" }}
+      >
+        {/* Subtle dot texture */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.07]"
+          style={{
+            backgroundImage: "radial-gradient(circle, #FEDDDD 1px, transparent 1px)",
+            backgroundSize: "22px 22px",
+          }}
+        />
+        {/* Glow accent */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[320px] rounded-full bg-white/3 blur-3xl pointer-events-none" />
+
+        <div className="relative max-w-2xl mx-auto text-center">
           <ScaleIn>
-            <p className="text-[#02334E]/40 text-[10px] font-bold uppercase tracking-[0.25em] mb-4">
+            <p className="text-[#FEDDDD] text-[10px] font-bold uppercase tracking-[0.25em] mb-5">
               Work With Us
             </p>
             <h2
-              className="text-3xl md:text-4xl font-black text-[#02334E] mb-4"
+              className="text-3xl md:text-5xl font-black text-white mb-5"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
-              Ready to Experience<br />the Invictus Difference?
+              Ready to Work with Us?
             </h2>
             <div className="w-12 h-[2px] bg-[#FEDDDD] mx-auto mb-7 rounded-full" />
-            <p className="text-[#64748B] mb-10 leading-relaxed">
-              Book your free consultation today and let&apos;s discuss how we can help you.
+            <p className="text-white/70 mb-10 text-lg leading-relaxed">
+              Experience the Invictus difference. Book your free consultation today.
             </p>
             <motion.div
-              whileHover={{ scale: 1.04 }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
             >
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-[#02334E] text-white font-bold rounded-xl hover:bg-[#011E30] transition-colors text-sm shadow-lg group"
+                className="inline-flex items-center gap-2 px-10 py-4 bg-white text-[#02334E] font-bold rounded-xl hover:bg-[#FEDDDD] transition-colors text-sm shadow-lg group"
               >
                 Get Started{" "}
                 <ArrowRight
