@@ -19,18 +19,18 @@ import {
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const milestones = [
-  { year: "2009", title: "Founded", desc: "Invictus Law Practice was established with a singular conviction: every client deserves fearless, expert, personalized legal counsel.", side: "right" },
-  { year: "2012", title: "First 100 Clients", desc: "Reached 100 satisfied clients across corporate and high-stakes litigation matters — all through word of mouth and referrals.", side: "left" },
-  { year: "2016", title: "Expanded Practice Areas", desc: "Added dedicated Intellectual Property and Employment Law divisions, establishing full-service capabilities.", side: "right" },
-  { year: "2020", title: "National Recognition", desc: "Recognized among the top boutique law firms in India by leading legal publications.", side: "left" },
-  { year: "2024", title: "500+ Clients Served", desc: "Crossed the 500-client milestone with a 98% client satisfaction rate and growing presence across India.", side: "right" },
+  { year: "2009", title: "Founded in Mumbai", desc: "Invictus Law was established with a vision to deliver world-class legal services.", side: "right" },
+  { year: "2012", title: "First Major Victory", desc: "Landmark corporate litigation win establishing our reputation for complex disputes.", side: "left" },
+  { year: "2016", title: "Practice Expansion", desc: "Expanded to 6 core practice areas to serve clients comprehensively.", side: "right" },
+  { year: "2020", title: "Digital Transformation", desc: "Pioneered digital-first legal services during the pandemic, serving clients nationwide.", side: "left" },
+  { year: "2024", title: "Industry Recognition", desc: "Named among top boutique law firms by Legal 500 India.", side: "right" },
 ];
 
 const values = [
-  { icon: Target, title: "Excellence", desc: "We pursue the highest standard of legal practice in every matter we handle, without exception." },
-  { icon: Heart, title: "Client-Centricity", desc: "Your goals are our goals. Every strategy is meticulously tailored to your unique situation." },
-  { icon: Shield, title: "Integrity", desc: "We operate with complete transparency, honesty, and unwavering ethical commitment." },
-  { icon: Award, title: "Results", desc: "We measure our success exclusively by the outcomes we deliver for our clients." },
+  { icon: Target, title: "Excellence", desc: "Uncompromising standards in every case we handle." },
+  { icon: Heart, title: "Client-Centricity", desc: "Your goals drive our strategy, always." },
+  { icon: Shield, title: "Integrity", desc: "Transparent, honest counsel you can trust." },
+  { icon: Award, title: "Results", desc: "We measure success by your outcomes." },
 ];
 
 const stats = [
