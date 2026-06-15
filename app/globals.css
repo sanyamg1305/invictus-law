@@ -29,8 +29,3 @@ body { font-family: 'Montserrat', sans-serif; color: #0A1628; background: #fff; 
   0% { transform: translateX(0); }
   100% { transform: translateX(-33.333%); }
 }
-
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-33.333%); }
-}
