@@ -24,3 +24,8 @@ html { scroll-behavior: smooth; }
 body { font-family: 'Montserrat', sans-serif; color: #0A1628; background: #fff; }
 .section-padding { padding: 5rem 1.5rem; }
 @media (min-width: 768px) { .section-padding { padding: 6rem 3rem; } }
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
