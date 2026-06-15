@@ -1,3 +1,4 @@
+import type { ElementType } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, ArrowLeft, Building2, Gavel, Lightbulb, Users, Home, Receipt, CheckCircle2 } from "lucide-react";
@@ -6,7 +7,7 @@ import { FadeUp, SlideInLeft, StaggerChildren, StaggerItem } from "@/components/
 import { FAQItem } from "./FAQItem";
 
 const areaData: Record<string, {
-  icon: React.ElementType;
+  icon: ElementType;
   title: string;
   tagline: string;
   overview: string;

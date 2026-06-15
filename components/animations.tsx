@@ -214,7 +214,7 @@ export function CountUp({
   }, [inView, motionVal, target, duration]);
 
   useEffect(() => {
-    return spring.on("change", (v) => {
+    return spring.on("change", (v: number) => {
       if (ref.current) {
         ref.current.textContent = `${prefix}${Math.round(v)}${suffix}`;
       }
