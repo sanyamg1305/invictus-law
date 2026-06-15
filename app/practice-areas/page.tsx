@@ -1,113 +1,257 @@
 "use client";
 
 import Link from "next/link";
-import { Building2, Gavel, Lightbulb, Users, Home, Receipt, ArrowRight } from "lucide-react";
+import { Briefcase, Scale, Lightbulb, Users, Building2, FileText, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { FadeUp, SlideInLeft, SlideInRight, ScaleIn, DrawLine } from "@/components/animations";
+import {
+  FadeUp,
+  StaggerChildren,
+  StaggerItem,
+  ScaleIn,
+  HeroText,
+  CountUp,
+  DrawLine,
+} from "@/components/animations";
 
 const areas = [
-  { icon: Building2, title: "Corporate Law", slug: "corporate-law", summary: "From company formation to complex M&A transactions, our corporate lawyers provide end-to-end business legal support.", services: ["Company Incorporation", "Mergers & Acquisitions", "Joint Ventures", "Corporate Governance", "Commercial Contracts", "Due Diligence"] },
-  { icon: Gavel, title: "Litigation & Dispute Resolution", slug: "litigation", summary: "We represent clients in courts, tribunals, and arbitration forums with strategic, results-driven advocacy.", services: ["Civil & Commercial Litigation", "Arbitration & Mediation", "Writ Petitions", "Appeals", "Injunctions", "Recovery Proceedings"] },
-  { icon: Lightbulb, title: "Intellectual Property", slug: "intellectual-property", summary: "Protect your creative and commercial assets with comprehensive IP protection and enforcement strategies.", services: ["Patent Registration", "Trademark Filing", "Copyright Protection", "IP Licensing", "IP Disputes", "Trade Secrets"] },
-  { icon: Users, title: "Employment Law", slug: "employment-law", summary: "Navigating the complexities of workplace law for employers and employees across India.", services: ["Employment Contracts", "Termination & Severance", "HR Policy Drafting", "Workplace Harassment", "Labour Compliance", "Industrial Disputes"] },
-  { icon: Home, title: "Real Estate & Property Law", slug: "real-estate", summary: "Expert legal guidance for all property matters — residential, commercial, and industrial.", services: ["Property Transactions", "RERA Compliance", "Title Verification", "Lease Agreements", "Property Disputes", "Land Acquisition"] },
-  { icon: Receipt, title: "Taxation & Compliance", slug: "taxation", summary: "Strategic tax planning and regulatory compliance to minimize liability and maximize value.", services: ["GST Advisory", "Income Tax Planning", "Corporate Tax", "Transfer Pricing", "Tax Litigation", "Regulatory Compliance"] },
+  {
+    label: "Corporate Law",
+    slug: "corporate-law",
+    icon: Briefcase,
+    desc: "M&A, contracts, regulatory compliance, and corporate governance.",
+  },
+  {
+    label: "Litigation & Dispute Resolution",
+    slug: "litigation",
+    icon: Scale,
+    desc: "High-stakes courtroom advocacy and alternative dispute resolution.",
+  },
+  {
+    label: "Intellectual Property",
+    slug: "intellectual-property",
+    icon: Lightbulb,
+    desc: "Patents, trademarks, copyrights, and IP strategy.",
+  },
+  {
+    label: "Employment Law",
+    slug: "employment-law",
+    icon: Users,
+    desc: "Workplace rights, contracts, and dispute resolution.",
+  },
+  {
+    label: "Real Estate & Property Law",
+    slug: "real-estate",
+    icon: Building2,
+    desc: "Transactions, title disputes, and property development.",
+  },
+  {
+    label: "Taxation & Compliance",
+    slug: "taxation",
+    icon: FileText,
+    desc: "Tax planning, compliance, and dispute representation.",
+  },
 ];
+
+const stats = [
+  { value: 15, suffix: "+", label: "Years Experience" },
+  { value: 500, suffix: "+", label: "Cases Won" },
+  { value: 6, suffix: "", label: "Practice Areas" },
+  { value: 98, suffix: "%", label: "Client Satisfaction" },
+];
+
+const cardVariants = {
+  rest: {
+    backgroundColor: "#ffffff",
+    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+  },
+  hover: {
+    backgroundColor: "#02334E",
+    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const textVariants = {
+  rest: { color: "#0A1628" },
+  hover: { color: "#ffffff", transition: { duration: 0.35 } },
+};
+
+const descVariants = {
+  rest: { color: "#64748B" },
+  hover: { color: "rgba(255,255,255,0.75)", transition: { duration: 0.35 } },
+};
+
+const iconVariants = {
+  rest: { scale: 1, color: "#02334E", backgroundColor: "rgba(2,51,78,0.07)" },
+  hover: {
+    scale: 1.18,
+    color: "#FEDDDD",
+    backgroundColor: "rgba(254,221,221,0.15)",
+    transition: { duration: 0.35, type: "spring", stiffness: 300 },
+  },
+};
+
+const arrowVariants = {
+  rest: { opacity: 0, y: 8 },
+  hover: { opacity: 1, y: 0, transition: { duration: 0.3, delay: 0.05 } },
+};
+
+const borderVariants = {
+  rest: { borderColor: "rgba(226,232,240,1)" },
+  hover: { borderColor: "rgba(2,51,78,0)", transition: { duration: 0.3 } },
+};
 
 export default function PracticeAreasPage() {
   return (
     <>
-      <section className="bg-[#02334E] text-white py-24 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <FadeUp delay={0.1}>
-            <p className="text-[#FEDDDD] text-xs font-semibold uppercase tracking-widest mb-3">What We Do</p>
+      {/* ── Hero ───────────────────────────────────────────────── */}
+      <section
+        className="relative bg-[#02334E] text-white py-32 px-6 overflow-hidden"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(254,221,221,0.18) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      >
+        {/* subtle blush glow */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 80% 60% at 50% 120%, rgba(254,221,221,0.07) 0%, transparent 70%)",
+          }}
+        />
+        <div className="relative max-w-4xl mx-auto text-center">
+          <FadeUp delay={0.05}>
+            <p className="text-[#FEDDDD] text-xs font-semibold uppercase tracking-[0.2em] mb-5">
+              What We Do
+            </p>
           </FadeUp>
-          <FadeUp delay={0.2}>
-            <h1 className="text-4xl md:text-5xl font-black mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>Areas of Practice</h1>
-          </FadeUp>
-          <FadeUp delay={0.35}>
-            <p className="text-white/60 text-lg leading-relaxed max-w-2xl mx-auto">Comprehensive legal services across six core practice areas, delivered by specialists with deep domain expertise.</p>
+
+          <HeroText delay={0.15}>
+            <h1
+              className="text-5xl md:text-6xl lg:text-7xl font-black mb-4 leading-tight"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              Our Practice Areas
+            </h1>
+          </HeroText>
+
+          <div className="flex justify-center my-5">
+            <DrawLine className="w-24" />
+          </div>
+
+          <FadeUp delay={0.45}>
+            <p className="text-white/60 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
+              Comprehensive legal expertise across every domain — delivered by
+              specialists who know your industry as well as the law.
+            </p>
           </FadeUp>
         </div>
       </section>
 
+      {/* ── Cards grid ─────────────────────────────────────────── */}
       <section className="section-padding bg-white">
-        <div className="max-w-6xl mx-auto space-y-16">
-          {areas.map((area, i) => {
-            const isEven = i % 2 === 1;
-            const Content = (
-              <div>
-                <motion.div
-                  className="w-14 h-14 rounded-xl bg-[#02334E] flex items-center justify-center mb-5"
-                  whileHover={{ rotate: 8, scale: 1.1 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <area.icon className="text-[#FEDDDD]" size={26} />
-                </motion.div>
-                <h2 className="text-2xl font-black text-[#0A1628] mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>{area.title}</h2>
-                <p className="text-[#64748B] leading-relaxed mb-5">{area.summary}</p>
-                <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                  <Link href={`/practice-areas/${area.slug}`} className="inline-flex items-center gap-2 text-[#02334E] font-semibold text-sm hover:text-[#011E30] transition-colors">
-                    Explore {area.title} <ArrowRight size={16} />
-                  </Link>
-                </motion.div>
-              </div>
-            );
-            const Services = (
-              <motion.div
-                className="bg-[#F8FAFC] rounded-xl p-8 border border-gray-100"
-                whileHover={{ backgroundColor: "#EBF2F7" }}
-                transition={{ duration: 0.3 }}
-              >
-                <h3 className="text-xs font-semibold uppercase tracking-widest text-[#02334E] mb-4">Our Services</h3>
-                <ul className="grid grid-cols-2 gap-3">
-                  {area.services.map((s, si) => (
-                    <motion.li
-                      key={s}
-                      className="flex items-start gap-2 text-sm text-[#64748B]"
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: si * 0.07 }}
-                    >
-                      <span className="mt-1 w-1.5 h-1.5 rounded-full bg-[#FEDDDD] flex-shrink-0" />
-                      {s}
-                    </motion.li>
-                  ))}
-                </ul>
-              </motion.div>
-            );
+        <div className="max-w-7xl mx-auto px-6">
+          <StaggerChildren
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            stagger={0.1}
+            delayStart={0.1}
+          >
+            {areas.map((area) => {
+              const Icon = area.icon;
+              return (
+                <StaggerItem key={area.slug}>
+                  <motion.div
+                    className="relative rounded-xl border overflow-hidden shadow-sm h-full cursor-pointer"
+                    variants={cardVariants}
+                    initial="rest"
+                    whileHover="hover"
+                    animate="rest"
+                    style={{ borderColor: "rgba(226,232,240,1)" }}
+                  >
+                    {/* blush top accent line */}
+                    <div className="h-[3px] bg-[#FEDDDD] w-full" />
 
-            return (
-              <div key={area.slug} className="grid lg:grid-cols-2 gap-10 items-center">
-                {isEven ? (
-                  <>
-                    <SlideInRight>{Content}</SlideInRight>
-                    <SlideInLeft>{Services}</SlideInLeft>
-                  </>
-                ) : (
-                  <>
-                    <SlideInLeft>{Content}</SlideInLeft>
-                    <SlideInRight>{Services}</SlideInRight>
-                  </>
-                )}
-              </div>
-            );
-          })}
+                    <motion.div
+                      className="p-8 flex flex-col h-full"
+                      variants={borderVariants}
+                    >
+                      {/* Icon */}
+                      <motion.div
+                        className="w-14 h-14 rounded-xl flex items-center justify-center mb-6"
+                        variants={iconVariants}
+                      >
+                        <Icon size={26} />
+                      </motion.div>
+
+                      {/* Title */}
+                      <motion.h2
+                        className="text-xl font-black mb-3"
+                        style={{ fontFamily: "'Playfair Display', serif" }}
+                        variants={textVariants}
+                      >
+                        {area.label}
+                      </motion.h2>
+
+                      {/* Description */}
+                      <motion.p
+                        className="text-sm leading-relaxed mb-6 flex-1"
+                        variants={descVariants}
+                      >
+                        {area.desc}
+                      </motion.p>
+
+                      {/* "Explore →" link fades in on hover */}
+                      <motion.div variants={arrowVariants}>
+                        <Link
+                          href={`/practice-areas/${area.slug}`}
+                          className="inline-flex items-center gap-2 text-[#FEDDDD] text-sm font-semibold"
+                        >
+                          Explore <ArrowRight size={15} />
+                        </Link>
+                      </motion.div>
+                    </motion.div>
+                  </motion.div>
+                </StaggerItem>
+              );
+            })}
+          </StaggerChildren>
         </div>
       </section>
 
-      <section className="section-padding bg-[#02334E]">
-        <div className="max-w-2xl mx-auto text-center">
+      {/* ── Stats row ──────────────────────────────────────────── */}
+      <section
+        className="relative bg-[#02334E] py-24 px-6 overflow-hidden"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(254,221,221,0.1) 1px, transparent 1px)",
+          backgroundSize: "24px 24px",
+        }}
+      >
+        <div className="relative max-w-5xl mx-auto">
           <ScaleIn>
-            <h2 className="text-3xl font-black text-white mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>Not Sure Where to Start?</h2>
-            <div className="w-12 h-0.5 bg-[#FEDDDD] mx-auto my-4" />
-            <p className="text-white/70 mb-8">Our lawyers will assess your matter and connect you with the right specialist. No cost, no commitment.</p>
-            <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-              <Link href="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-[#02334E] font-semibold rounded-lg hover:bg-[#FEDDDD] transition-colors">
-                Get Free Legal Assessment <ArrowRight size={16} />
-              </Link>
-            </motion.div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+              {stats.map((s, i) => (
+                <div key={s.label} className="flex flex-col items-center gap-2">
+                  <FadeUp delay={i * 0.1}>
+                    <p
+                      className="text-5xl md:text-6xl font-black text-white mb-1"
+                      style={{ fontFamily: "'Playfair Display', serif" }}
+                    >
+                      <CountUp
+                        target={s.value}
+                        suffix={s.suffix}
+                        duration={2.2}
+                      />
+                    </p>
+                    <div className="w-6 h-[3px] bg-[#FEDDDD] mx-auto mb-2 rounded-full" />
+                    <p className="text-white/60 text-sm font-medium uppercase tracking-wider">
+                      {s.label}
+                    </p>
+                  </FadeUp>
+                </div>
+              ))}
+            </div>
           </ScaleIn>
         </div>
       </section>
